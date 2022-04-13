@@ -17,6 +17,7 @@ const userSchema = new Schema({
     required: true,
     unique: true
   },
+  photo: String,
   balance: {
     type: Number,
     default: 0
