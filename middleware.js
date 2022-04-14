@@ -2,7 +2,6 @@ const ExpressError = require("./utils/ExpressError")
 
 const Wallet = require("./models/walletModel")
 
-
 module.exports.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated())
     return next(new ExpressError("You must log in first", 401))

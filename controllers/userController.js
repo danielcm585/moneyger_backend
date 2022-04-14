@@ -2,6 +2,7 @@ const passport = require("passport")
 
 const ExpressError = require("../utils/ExpressError")
 const User = require("../models/userModel")
+const Wallet = require("../models/walletModel")
 
 module.exports.login = (req, res, next) => {
   passport.authenticate("local", async (err, user, info) => {
@@ -27,6 +28,9 @@ module.exports.register = async (req, res, next) => {
   try {
     const { password } = req.body
     const user = new User({ ...req.body })
+    const wallet = new Wallet({ owner: user._id })
+    user.wallet.push(wallet)
+    await wallet.save()
     await User.register(user, password)
     const { hash, salt, ...userData } = user._doc
     res.status(200).json(userData)
