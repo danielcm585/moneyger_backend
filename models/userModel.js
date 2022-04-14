@@ -17,7 +17,10 @@ const userSchema = new Schema({
     required: true,
     unique: true
   },
-  photo: String,
+  photo: {
+    type: String,
+    default: "https://i.ibb.co/B2cSS4q/download.png"
+  },
   balance: {
     type: Number,
     default: 0
