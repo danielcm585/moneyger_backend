@@ -5,6 +5,7 @@ const User = require("../models/userModel")
 const Wallet = require("../models/walletModel")
 
 module.exports.login = (req, res, next) => {
+  console.log("HERE")
   passport.authenticate("local", async (err, user, info) => {
     if (err) return next(err)
     if (!user) return next(ExpressError("User not found", 401))
@@ -40,6 +41,8 @@ module.exports.register = async (req, res, next) => {
   }
 }
 
-// module.exports.getWallets = async (req, res, next) => {
-  
-// }
+module.exports.check = (req, res, next) => {
+  if (!req.isAuthenticated()) 
+    return res.status(200).json({ isLoggedIn: false });
+  res.status(200).json({ isLoggedIn: true });
+}

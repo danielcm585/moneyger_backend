@@ -20,8 +20,8 @@ const walletSchema = new Schema({
   },
   type: {
     type: String,
-    enum: ["CASH","E-MONEY","BANK-ACC","CREDIT-CARD"],
-    default: "CASH"
+    enum: ["Cash","E-Money","Bank Account","Credit Card"],
+    default: "Cash"
   },
   history: [{
     type: Schema.Types.ObjectId,

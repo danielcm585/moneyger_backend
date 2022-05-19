@@ -3,6 +3,7 @@ const passportLocalMongoose = require("passport-local-mongoose")
 
 const Wallet = require("./walletModel")
 const Activity = require("./activityModel")
+const Notification = require("./notificationModel")
 
 const Schema = mongoose.Schema
 
@@ -32,6 +33,10 @@ const userSchema = new Schema({
   history: [{
     type: Schema.Types.ObjectId,
     ref: "Activity"
+  }],
+  notification: [{
+    type: Schema.Types.ObjectId,
+    ref: "Notification",
   }]
 })
 

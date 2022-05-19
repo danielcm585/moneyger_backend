@@ -5,21 +5,20 @@ const Wallet = require("./walletModel")
 
 const Schema = mongoose.Schema
 
-const activitySchema = new Schema({
+const notificationSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "User"
   },
-  wallet: {
-    type: Schema.Types.ObjectId,
-    ref: "Wallet"
+  body: String,
+  read: {
+    type: Boolean,
+    default: false
   },
-  amount: Number,
   category: {
     type: String,
-    enum: ["Food","Clothes","Home","Work","Entertainment",
-          "Income","Interest","Cashback"],
-    default: "Income"
+    enum: ["Warning, Info, Congratulation, Basic"],
+    default: "Basic"
   },
   time: {
     type: Date,
@@ -27,4 +26,4 @@ const activitySchema = new Schema({
   }
 })
 
-module.exports = mongoose.model("Activity", activitySchema)
+module.exports = mongoose.model("Notification", notificationSchema)

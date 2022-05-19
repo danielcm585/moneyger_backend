@@ -5,9 +5,10 @@ const Wallet = require("../models/walletModel")
 const Activity = require("../models/activityModel")
 
 module.exports.create = async (req, res, next) => {
-  const user = await User.findById(req.body.owner.id)
-  const wallet = new Wallet({ 
+  const user = await User.findById(req.user._id)
+  const wallet = new Wallet({
     ...req.body,
+    owner: user._id
   })
   user.wallet.push(wallet)
   await wallet.save()

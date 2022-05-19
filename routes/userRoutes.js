@@ -6,8 +6,8 @@ const { isLoggedIn } = require("../middleware")
 const router = express.Router()
 
 router.post("/login", user.login)
-router.post("/logout", isLoggedIn, user.logout)
+router.post("/logout", user.logout)
 router.post("/register", user.register)
-// router.get("/wallets", isLoggedIn, user.getWallets)
+router.get("/check", user.check)
 
 module.exports = router
